@@ -10,30 +10,41 @@ edit <Номер> <Имя> <Фамилия> - Изменяет имя
 delete <Номер> - Удаляет ученика
 average - Список со средним баллом. Вывод - [Список]
 """
-from func_interact_diary import func_add, func_mark, func_all, func_edit, func_delete, func_average_mark
 
-my_dict = {}
-number = 1
+students_list = []
 
 while True:
-    cmd = input("Введите команду:").split()
-    if cmd[0] == "exit":
+    data = input("Введите команду: ")
+    command = data.split()[0]
+    if command == "exit":
         break
-    if cmd[0] == "help":
+    elif command == "help":
         print(help_message)
-    elif cmd[0] == "add":
-        my_dict = func_add(cmd[1] + " " + cmd[2], number,  my_dict)
-        number += 1
-    elif cmd[0] == "all":
-        func_all(my_dict)
-    elif cmd[0] == "mark":
-        my_dict = func_mark(int(cmd[1]), int(cmd[2]), my_dict)
-    elif cmd[0] == "edit":
-        my_dict = func_edit(int(cmd[1]), cmd[2] + " " + cmd[3], my_dict)
-    elif cmd[0] == "delete":
-        my_dict = func_delete(int(cmd[1]), my_dict)
-        number -= 1
-    elif cmd[0] == "average":
-        func_average_mark(my_dict)
+    elif command == "add":
+        new_student = {"Имя студента": data.split()[1] + " " + data.split()[2], "Оценки": []}
+        if new_student in students_list:
+            print("Студент уже есть в списке!")
+        else:
+            students_list.append(new_student)
+    elif command == "all":
+        print(students_list)
+    elif command == "mark":
+        mark = int(data.split()[1])
+        number = int(data.split()[2])
+        new_number = students_list[number - 1]
+        new_number["Оценки"].append(mark)
+    elif command == "edit":
+        number = int(data.split()[1])
+        new_number = students_list[number - 1]
+        new_number["Имя студента"] = data.split()[2] + " " + data.split()[3]
+        new_number["Оценки"] = []
+    elif command == "delete":
+        number = int(data.split()[1])
+        students_list.pop(number - 1)
+    elif command == "average":
+        number = int(data.split()[1])
+        new_number = students_list[number - 1]
+        average = float(sum(new_number["Оценки"]) / len(new_number["Оценки"]))
+        print(average)
     else:
         print("Некорректная команда! Введите 'help' для вызова списка команд!")
