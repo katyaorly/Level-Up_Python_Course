@@ -1,6 +1,7 @@
-from geometry_figures.circle import is_correct_circle, get_square_circle, get_perimetr_circle
-from geometry_figures.triangle import is_correct_triangle, get_square_triangle, get_perimetr_triangle
-from geometry_figures.rectangle import is_correct_rectangle, get_square_rectangle, get_perimetr_rectangle
+from Lesson4.geometry_figures.circle import get_square_circle, get_perimetr_circle
+from Lesson4.geometry_figures.rectangle import get_square_rectangle, get_perimetr_rectangle, is_correct_rectangle
+from Lesson4.geometry_figures.triangle import get_square_triangle, get_perimetr_triangle
+
 
 rad = int(input("Введите радиус: "))
 sq_c = get_square_circle(rad)
