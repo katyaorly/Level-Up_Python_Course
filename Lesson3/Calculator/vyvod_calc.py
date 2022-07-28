@@ -1,4 +1,4 @@
-from Calculator.Calc import vvod, calculate
+from Lesson3.Calculator.Calc import vvod, calculate
 
 x1, sign, x2  = vvod()
 print(x1, sign, x2, end=" = ")
