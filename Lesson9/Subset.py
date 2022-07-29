@@ -7,4 +7,4 @@
 x = {int(i) for i in input().split()}
 y = {int(i) for i in input().split()}
 # a = Is_Subset(x, y)
-print(y.issubset(x))
+print(set(y).issubset(set(x)))
